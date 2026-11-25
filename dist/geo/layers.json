@@ -1,0 +1,73 @@
+{
+  "imagery": [
+    {
+      "url": "sentinel-world.jpg",
+      "bounds": [
+        -180,
+        -90,
+        180,
+        90
+      ]
+    },
+    {
+      "url": "south-china.webp",
+      "bounds": [
+        101,
+        14,
+        125,
+        33
+      ]
+    },
+    {
+      "url": "guangxi-guangdong.webp",
+      "bounds": [
+        109,
+        21,
+        115,
+        25
+      ]
+    },
+    {
+      "url": "pearl-estuary.webp",
+      "bounds": [
+        113.16,
+        22.22,
+        114.15,
+        23.06
+      ]
+    },
+    {
+      "url": "baoan.webp",
+      "bounds": [
+        113.73,
+        22.59,
+        113.85,
+        22.7
+      ]
+    }
+  ],
+  "terrain": [
+    {
+      "url": "terrain-region.bin",
+      "bounds": [
+        110,
+        22,
+        114,
+        24
+      ],
+      "width": 1281,
+      "height": 641
+    },
+    {
+      "url": "terrain-baoan.bin",
+      "bounds": [
+        113.68,
+        22.55,
+        113.93,
+        22.8
+      ],
+      "width": 301,
+      "height": 301
+    }
+  ]
+}

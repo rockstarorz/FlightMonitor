@@ -1,0 +1,13 @@
+__pycache__/
+.DS_Store
+/dist/data/
+/dist/vendor/
+/dist/geo/*.bin
+/dist/geo/*.jpg
+/dist/geo/*.webp
+*.gpx
+*.kml
+*.kmz
+*.nmea
+*.zip
+gnss_log_*

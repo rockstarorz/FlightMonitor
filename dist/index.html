@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>广西 → 深圳 · 三维航迹</title><link rel="stylesheet" href="vendor/Cesium/Widgets/widgets.css"><link rel="stylesheet" href="style.css"><script>window.CESIUM_BASE_URL='./vendor/Cesium/'</script><script defer src="vendor/Cesium/Cesium.js"></script></head>
+<body>
+<header><div class="brand"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M5 26 29 7l-7 23-4-9-13 5Z M18 21 29 7" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/></svg><b>航迹观测台</b></div><span class="header-rule"></span><span class="muted">三维航迹回放</span><time class="date">2026 / 11 / 24</time></header>
+<main>
+<aside>
+<div class="route"><div class="eyebrow">飞行记录</div><h1>广西 <span>→</span> 深圳</h1><p>梧州以西 · 深圳宝安机场</p><div class="stats"><div><strong id="km">—</strong><small>实测里程 / km</small></div><div><strong id="npts">—</strong><small>定位点</small></div></div></div>
+<section class="readout"><div class="section-title"><h2>当前采样</h2><span id="quality" class="chip">读取中</span></div>
+<div id="clock" class="clock">--:--:--</div><div class="tiny">北京时间 UTC+8</div>
+<div class="dual"><div><small>海拔</small><p><strong id="alt">—</strong> <em>m</em></p><div class="alt-feet"><span id="feet">—</span> ft</div></div><div><small>地速</small><p><strong id="speed">—</strong> <em>km/h</em></p></div></div>
+<div class="flight-level"><span title="FL 是 Flight Level，以标准气压 1013.25 hPa 为基准，每级相当于 100 英尺。此处仅按 GNSS 海拔换算。">FL 高度参考</span><strong id="flightLevel">—</strong></div>
+<div class="bank-readout"><span>估算滚转</span><strong id="bankAngle">—</strong></div>
+<div id="coord" class="coord"></div>
+<details id="details"><summary>GNSS 采样详情</summary><p class="attitude-note">FL 参考只按 GNSS 海拔折算，实际气压高度层未记录。</p><div id="fields"></div><pre id="raw"></pre></details>
+<details id="attitudeSettings"><summary>飞机姿态调试</summary>
+<label class="gain" for="bankGain">滚转灵敏度 <output id="gainValue" for="bankGain">1.00×</output></label>
+<input id="bankGain" aria-label="滚转灵敏度" type="range" min="0" max="3" step="0.05" value="1">
+<div id="accel" class="attitude-note">横向加速度 —</div>
+<p class="attitude-note">根据平滑后的地面转向速率和地速估算。空档、低速与近地阶段不估算滚转。</p>
+</details></section>
+<section class="gaps"><div class="section-title"><h2>定位空档</h2><span class="count" id="ngap">—</span></div><div id="gapList"></div></section>
+</aside>
+<section class="workspace" aria-label="航迹视图和时间轴">
+<div class="mapbox"><div id="map" tabindex="0" aria-label="三维航迹镜头" aria-describedby="cameraHelp"></div>
+<div class="mapbar"><div class="views" aria-label="相机视角"><button data-view="all" aria-pressed="true">全程</button><button data-view="approach" aria-pressed="false">最后进近</button><button data-view="airport" aria-pressed="false">机场滑行</button></div><label class="scale">高度<select id="scale" aria-label="高度比例"><option value="1">1×</option><option value="3">3×</option><option value="5">5×</option></select></label></div>
+<details class="camera-help"><summary>镜头操作</summary><div id="cameraHelp">
+<p>先点击地图，再按住按键。WASD 沿地表平移，俯仰和镜头高度保持不变。</p>
+<dl><dt>W / S</dt><dd>前进 / 后退</dd><dt>A / D</dt><dd>左移 / 右移</dd>
+<dt>Q / E</dt><dd>绕地表法线左转 / 右转</dd><dt>F / R</dt><dd>抬头 / 低头（俯仰）</dd>
+<dt>空格 / Shift</dt><dd>上升 / 下降</dd></dl>
+<p>鼠标左键拖动地图，滚轮拉近或拉远，按住滚轮拖动即可倾斜和旋转。点上方视角可复位。</p></div></details>
+<div id="mapMessage" role="status">正在载入三维地图…</div>
+<div class="legend"><i></i>实测航迹 <i class="orange"></i>空档直线</div></div>
+<div class="timeline"><div class="chart-head"><h2>飞行剖面</h2><div class="chart-series"><i></i>海拔 <i></i>地速 <i></i>插值海拔</div><span class="hint">点击曲线定位</span></div>
+<canvas id="profile" aria-label="海拔及地速随时间变化，使用下方时间滑块逐秒查看"></canvas>
+<input id="seek" type="range" min="0" max="1" value="0" step="1" aria-label="航迹时间">
+<div class="transport"><button id="play" aria-label="播放"><span id="playIcon">▶</span> <span id="playText">播放</span></button><select id="rate" aria-label="回放速度"><option value="1">1×</option><option value="10">10×</option><option value="30" selected>30×</option><option value="60">60×</option></select><span id="playTime"></span><span id="endTime"></span></div></div></section>
+</main><footer><span>GPSTest · WGS 84</span><span id="layerState" role="status">正在准备图层</span><a href="geo/sources.html" target="_blank" rel="noopener">底图来源</a></footer>
+<script type="module" src="app.js"></script></body></html>
